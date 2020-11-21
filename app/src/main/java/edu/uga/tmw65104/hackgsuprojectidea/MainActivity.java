@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     TextView titleTextView;
     Button addBtn;
     Button editBtn;
+    Button nextBtn;
+    Button prevBtn;
     LinearLayout contactListLinearLayout;
     LinkedList<TextView> textViews;
 
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         editBtn = (Button) findViewById(R.id.editBtn);
         contactListLinearLayout = (LinearLayout) findViewById(R.id.contactListLinearLayout);
         textViews = new LinkedList<>();
+        prevBtn = (Button) findViewById(R.id.prevBtn);
+        nextBtn = (Button) findViewById(R.id.nextBtn);
     }
 
 
@@ -63,6 +67,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), EditPerson.class);
                 startActivity(i);
+            }
+        });
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // do something
+            }
+        });
+        prevBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // do something
             }
         });
     } // createFunctionality

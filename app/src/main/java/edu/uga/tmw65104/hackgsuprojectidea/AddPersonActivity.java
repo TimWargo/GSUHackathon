@@ -37,10 +37,12 @@ public class AddPersonActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /*
                 String name = nameText.getText().toString();
-                String time = dateTimeText.getText().toString();
+                String time = timeText.getText().toString();
+                String phoneNum = phoneText.getText().toString();
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME", name);
                 i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.TIME", time);
+                i.putExtra("edu.uga.tme65104.hackgsuprojectidea.PHONE", phoneNum);
                 startActivity(i);
                 */
                 // ENTER CODE HERE TO ADD A PERSON

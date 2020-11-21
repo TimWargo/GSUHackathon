@@ -60,14 +60,19 @@ tools:context=".EditPerson">
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/person1Text"
+            <TextView
+                android:id="@+id/person1TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:text="Person 1"
+                android:textSize="24sp" />
+
+            <Space
+                android:id="@+id/person1Space"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/person1DeleteBtn"
