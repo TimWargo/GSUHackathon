@@ -7,12 +7,24 @@
     android:background="#92D6AC6E"
     tools:context=".MainActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="203dp"
         android:layout_height="45dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
         android:background="#FDF49F"
         android:fontFamily="monospace"
         android:paddingLeft="5dp"
@@ -20,10 +32,8 @@
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.217"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        tools:layout_editor_absoluteX="56dp" />
 
     <ScrollView
         android:id="@+id/contactListScrollView"

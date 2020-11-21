@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         contactListLinearLayout = (LinearLayout) findViewById(R.id.contactListLinearLayout);
         textViews = new LinkedList<>();
         setLayouts();
-        if(getIntent().hasExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME")) {
-
+        if(getIntent().hasExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME") &&
+            getIntent().hasExtra("edu.uga.tmw65104.hackgsuprojectidea.TIME")) {
+            addPerson();
         }
     }
 
@@ -43,12 +44,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), AddPersonActivity.class);
                 startActivity(i);
-                /*
-                textViews.add(new TextView(getApplicationContext()));
-                textViews.getLast().setText("Person " + textViews.size());
-                contactListLinearLayout.addView(textViews.getLast());
-                */
             }
         });
     } // setLayouts
+
+    private void addPerson() {
+        System.out.println(textViews.add(new TextView(getApplicationContext())));
+        textViews.getLast().setText(getIntent().getExtras().getString("edu.uga.tmw65104.hackgsuprojectidea.NAME"));
+        contactListLinearLayout.addView(textViews.getLast());
+
+    }
 }

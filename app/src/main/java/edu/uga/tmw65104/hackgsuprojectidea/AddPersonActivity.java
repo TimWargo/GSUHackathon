@@ -38,8 +38,8 @@ public class AddPersonActivity extends AppCompatActivity {
                 String name = nameText.getText().toString();
                 String time = dateTimeText.getText().toString();
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                i.putExtra("uga.edu.tmw65104.hackgsuprojectidea.NAME", name);
-                i.putExtra("uga.edu.tmw65104.hackgsuprojectidea.TIME", time);
+                i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME", name);
+                i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.TIME", time);
                 startActivity(i);
             }
         });
