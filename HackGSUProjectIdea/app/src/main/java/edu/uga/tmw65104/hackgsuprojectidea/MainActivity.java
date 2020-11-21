@@ -3,6 +3,7 @@ package edu.uga.tmw65104.hackgsuprojectidea;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         contactListLinearLayout = (LinearLayout) findViewById(R.id.contactListLinearLayout);
         textViews = new LinkedList<>();
         setLayouts();
+        if(getIntent().hasExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME")) {
+
+        }
     }
 
 
@@ -37,9 +41,13 @@ public class MainActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), AddPersonActivity.class);
+                startActivity(i);
+                /*
                 textViews.add(new TextView(getApplicationContext()));
                 textViews.getLast().setText("Person " + textViews.size());
                 contactListLinearLayout.addView(textViews.getLast());
+                */
             }
         });
     } // setLayouts
