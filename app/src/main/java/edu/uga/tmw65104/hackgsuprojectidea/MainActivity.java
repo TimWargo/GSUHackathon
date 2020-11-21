@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView titleTextView;
     Button addBtn;
+    Button editBtn;
     LinearLayout contactListLinearLayout;
     LinkedList<TextView> textViews;
 
@@ -25,20 +26,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Create the Variables
+        createVariables();
+
+        // Sets the layouts for certain variables
+        setLayouts();
+
+        // Create functionality
+        createFunctionality();
+    }
+
+    private void createVariables() {
         titleTextView = (TextView) findViewById(R.id.titleTextView);
         addBtn = (Button) findViewById(R.id.addBtn);
+        editBtn = (Button) findViewById(R.id.editBtn);
         contactListLinearLayout = (LinearLayout) findViewById(R.id.contactListLinearLayout);
         textViews = new LinkedList<>();
-        setLayouts();
-        if(getIntent().hasExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME") &&
-            getIntent().hasExtra("edu.uga.tmw65104.hackgsuprojectidea.TIME")) {
-            addPerson();
-        }
     }
 
 
     private void setLayouts() {
         titleTextView.setText("Today");
+    } // setLayouts
+
+    private void createFunctionality() {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,12 +58,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-    } // setLayouts
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), EditPerson.class);
+                startActivity(i);
+            }
+        });
+    } // createFunctionality
 
     private void addPerson() {
+        // ENTER CODE HERE TO ADD A PERSON
+        /*
         System.out.println(textViews.add(new TextView(getApplicationContext())));
         textViews.getLast().setText(getIntent().getExtras().getString("edu.uga.tmw65104.hackgsuprojectidea.NAME"));
-        contactListLinearLayout.addView(textViews.getLast());
-
+        for(int i = 0; i < textViews.size(); i++) {
+            contactListLinearLayout.addView(textViews.get(i));
+        } // for
+        */
     }
 }

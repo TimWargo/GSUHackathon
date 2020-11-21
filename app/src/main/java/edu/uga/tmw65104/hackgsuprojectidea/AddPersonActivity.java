@@ -35,12 +35,15 @@ public class AddPersonActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 String name = nameText.getText().toString();
                 String time = dateTimeText.getText().toString();
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME", name);
                 i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.TIME", time);
                 startActivity(i);
+                */
+                // ENTER CODE HERE TO ADD A PERSON
             }
         });
     }
