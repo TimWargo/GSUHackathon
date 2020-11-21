@@ -96,7 +96,7 @@ tools:context=".EditPerson">
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="#E920FF3E"
         android:text="Save" />
 
     <Button
@@ -104,7 +104,7 @@ tools:context=".EditPerson">
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="#B3B0B0"
         android:text="Cancel" />
 </LinearLayout>
 
