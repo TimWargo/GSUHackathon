@@ -13,7 +13,6 @@ import org.w3c.dom.Text;
 public class AddPersonActivity extends AppCompatActivity {
 
     EditText nameText;
-    EditText dateTimeText;
     Button addBtn;
     Button cancelBtn;
 
@@ -24,13 +23,15 @@ public class AddPersonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_person);
         setFunctionality();
 
+        if(getIntent().hasExtra("edu.uga.tmw65104.hackgsuprojectidea.DATE")) {
+            nameText.setText(getIntent().getExtras().getString("edu.uga.tmw65104.hackgsuprojectidea.DATE"));
+        }
 
 
     }
 
     private void setFunctionality() {
         nameText = (EditText) findViewById(R.id.nameText);
-        dateTimeText = (EditText) findViewById(R.id.timeText);
         addBtn = (Button) findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override

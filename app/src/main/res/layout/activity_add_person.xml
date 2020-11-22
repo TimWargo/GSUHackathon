@@ -38,21 +38,6 @@
         app:layout_constraintTop_toTopOf="@+id/textboxTopGuideline"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/timeText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:ems="10"
-        android:fontFamily="monospace"
-        android:hint="Enter time"
-        android:inputType="time"
-        app:layout_constraintBottom_toTopOf="@+id/secondTextBoxBotGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/textboxRightGuideline"
-        app:layout_constraintHorizontal_bias="0.336"
-        app:layout_constraintStart_toStartOf="@+id/textboxLeftGuideline"
-        app:layout_constraintTop_toTopOf="@+id/secondTextBoxTopGuideline"
-        app:layout_constraintVertical_bias="0.954" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
@@ -153,20 +138,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".5" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/thirdTextBoxTopGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".55" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/thirdTextBoxBotGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".65" />
-
     <EditText
         android:id="@+id/phoneText"
         android:layout_width="0dp"
@@ -174,9 +145,9 @@
         android:ems="10"
         android:hint="Enter phone number"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/thirdTextBoxBotGuideline"
+        app:layout_constraintBottom_toTopOf="@+id/secondTextBoxBotGuideline"
         app:layout_constraintEnd_toStartOf="@+id/textboxRightGuideline"
         app:layout_constraintStart_toStartOf="@+id/textboxLeftGuideline"
-        app:layout_constraintTop_toTopOf="@+id/thirdTextBoxTopGuideline" />
+        app:layout_constraintTop_toTopOf="@+id/secondTextBoxTopGuideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
