@@ -10,26 +10,34 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.google.gson.*;
 
 public class DataParser {
 
     static LinkedList<String[]> entries;
 
+    //populates linkedlist entries with each entry which is of type String[4]
     public static void initialize () {
-        entries = new LinkedList<String[]>();
-        try {
-            Scanner reader = new Scanner(new File("Data.txt"));
-            while (reader.hasNextLine()) {
-                entries.add(reader.nextLine().split(":"));
+        if (entries == null) {
+            entries = new LinkedList<String[]>();
+            try {
+                Scanner reader = new Scanner(new File("Data.txt"));
+                while (reader.hasNextLine()) {
+                    entries.add(reader.nextLine().split(":"));
+                }
+            } catch (Exception e) {
+                //do nothing because this won't ever happen
             }
-        } catch (Exception e) {
-            //do nothing because this won't ever happen
         }
     }
 
 
     public static void add (String number, String name, String date) {
+        for (String[] x: entries) {
+            if (x[2].compareTo(date) > 0) {
+
+            }
+
+        }
         entries.add(new String[]{number, name, date});
         update();
     }
@@ -71,7 +79,7 @@ public class DataParser {
         return list;
     }
 
-    //returns an array that contains String arrays of size 2 where the first element is the name and the second element is the phone number
+    //returns an array of distinct strings that are the phone numbers
     public static String[] covidNumbers () {
         LinkedList<String> list = new LinkedList<>();
         for (String[] x: entries) {
