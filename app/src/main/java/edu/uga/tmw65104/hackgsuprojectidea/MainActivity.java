@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Button editBtn;
     Button nextBtn;
     Button prevBtn;
+    Button covidBtn;
     LinearLayout contactListLinearLayout;
     LinkedList<TextView> textViews;
     Date dateShown;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         prevBtn = (Button) findViewById(R.id.prevBtn);
         nextBtn = (Button) findViewById(R.id.nextBtn);
+        covidBtn = (Button) findViewById(R.id.covidBtn);
 
         dateShown = java.util.Calendar.getInstance().getTime();
         calendar = new GregorianCalendar();
@@ -92,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), EditPerson.class);
+                i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.DATE", generateDateString());
                 startActivity(i);
             }
         });
@@ -108,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
                         textViews.add(new TextView(getApplicationContext()));
                         textViews.get(i).setText(DataParser.getName(list.get(i)));
                         contactListLinearLayout.addView(textViews.get(i));
+                    }
+                    if (!prevBtn.isClickable()) {
+                        prevBtn.setClickable(true);
                     }
                 } else {
                     nextBtn.setClickable(false);
@@ -128,9 +134,18 @@ public class MainActivity extends AppCompatActivity {
                         textViews.get(i).setText(DataParser.getName(list.get(i)));
                         contactListLinearLayout.addView(textViews.get(i));
                     }
+                    if (!nextBtn.isClickable()) {
+                        nextBtn.setClickable(true);
+                    }
                 } else {
                     prevBtn.setClickable(false);
                 }
+            }
+        });
+        covidBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] numbers = DataParser.covidNumbers();
             }
         });
     } // createFunctionality
@@ -177,8 +192,13 @@ public class MainActivity extends AppCompatActivity {
     private boolean isInBounds(int offset) {
         GregorianCalendar tempCalendar = new GregorianCalendar(calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        Log.d("currentCalendar", currentDayCalendar.toString());
         tempCalendar.add(Calendar.DAY_OF_MONTH, offset);
-        if (tempCalendar.compareTo(currentDayCalendar) > 0 || tempCalendar.compareTo(currentDayCalendar) < -14) {
+        GregorianCalendar superPastTempCalendar = new GregorianCalendar(currentDayCalendar.get(Calendar.YEAR),
+                currentDayCalendar.get(Calendar.MONTH), currentDayCalendar.get(Calendar.DAY_OF_MONTH));
+        superPastTempCalendar.add(Calendar.DAY_OF_MONTH, -14);
+        Log.d("currentCalendar", tempCalendar.toString());
+        if (tempCalendar.compareTo(currentDayCalendar) > 0 || tempCalendar.compareTo(superPastTempCalendar) < 0) {
             return false;
         } else {
             return true;

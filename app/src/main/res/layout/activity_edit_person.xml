@@ -49,7 +49,7 @@ tools:context=".EditPerson">
     app:layout_constraintTop_toTopOf="@+id/guideline10">
 
     <LinearLayout
-        android:id="@+id/contactListLinearLayout"
+        android:id="@+id/editPersonListLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
