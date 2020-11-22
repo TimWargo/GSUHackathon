@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Create the Variables
         createVariables();
 
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         addBtn = (Button) findViewById(R.id.addBtn);
         editBtn = (Button) findViewById(R.id.editBtn);
         contactListLinearLayout = (LinearLayout) findViewById(R.id.contactListLinearLayout);
+
         prevBtn = (Button) findViewById(R.id.prevBtn);
         nextBtn = (Button) findViewById(R.id.nextBtn);
 
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         offset = 0;
         // Creates the list of people to use for the program
         DataParser.initialize();
+        textViews = new LinkedList<>();
     }
 
 
@@ -65,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
         titleTextView.setText(generateDateString(offset));
         nextBtn.setText(">");
         prevBtn.setText("<");
+
+        /* This is fun coding */
+        LinkedList<String[]> list = DataParser.dateEntries(generateDateString(offset));
+        for(int i = 0; i < list.size(); i++) {
+            textViews.add(new TextView(getApplicationContext()));
+            textViews.getLast().setText(DataParser.getName(list.get(i)));
+            contactListLinearLayout.addView(textViews.getLast());
+        } // for
+
     } // setLayouts
 
     private void createFunctionality() {
@@ -112,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
     private String generateDateString(int offset) {
         calendar.add(Calendar.DAY_OF_MONTH, offset);
         dateShown = calendar.getTime();
-        return calendar.get(Calendar.MONTH) + "/"
-                + calendar.get(Calendar.DAY_OF_MONTH) + "/"
-                + calendar.get(Calendar.YEAR);
+        return calendar.get(Calendar.YEAR) + ""
+                + calendar.get(Calendar.MONTH) + ""
+                + calendar.get(Calendar.DAY_OF_MONTH) + "";
     }
 }

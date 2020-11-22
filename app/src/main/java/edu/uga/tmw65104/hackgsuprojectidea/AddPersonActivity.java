@@ -40,7 +40,7 @@ public class AddPersonActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String name = nameText.getText().toString();
                 String phoneNum = phoneText.getText().toString();
-                //DataParser.add(phoneNum, name, currentDate);
+                DataParser.add(phoneNum, name, currentDate);
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME", name);
                 startActivity(i);
