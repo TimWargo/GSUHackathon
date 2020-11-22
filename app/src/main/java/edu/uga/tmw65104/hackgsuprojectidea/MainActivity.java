@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     LinkedList<TextView> textViews;
     Date dateShown;
     GregorianCalendar calendar;
-    private int offset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         dateShown = java.util.Calendar.getInstance().getTime();
         calendar = new GregorianCalendar();
-        offset = 0;
         // Creates the list of people to use for the program
         DataParser.initialize();
         textViews = new LinkedList<>();
@@ -64,12 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setLayouts() {
-        titleTextView.setText(generateDateString(offset));
+        titleTextView.setText(generateDateString());
         nextBtn.setText(">");
         prevBtn.setText("<");
-
+        nextBtn.setClickable(false);
         /* This is fun coding */
-        LinkedList<String[]> list = DataParser.dateEntries(generateDateString(offset));
+        LinkedList<String[]> list = DataParser.dateEntries(generateDateString());
         for(int i = 0; i < list.size(); i++) {
             textViews.add(new TextView(getApplicationContext()));
             textViews.getLast().setText(DataParser.getName(list.get(i)));
@@ -84,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), AddPersonActivity.class);
                 Date date = java.util.Calendar.getInstance().getTime();
-                i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.DATE", generateDateString(offset));
+                i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.DATE", generateDateString());
                 startActivity(i);
             }
         });
@@ -98,33 +96,44 @@ public class MainActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // do something
+                setDateShown(1);
+                titleTextView.setText(generateDateString());
+                LinkedList<String[]> list = DataParser.dateEntries(generateDateString());
+                textViews.clear();
+                contactListLinearLayout.removeAllViews();
+                for (int i = 0; i < list.size(); i++) {
+                    textViews.add(new TextView(getApplicationContext()));
+                    textViews.get(i).setText(DataParser.getName(list.get(i)));
+                    contactListLinearLayout.addView(textViews.get(i));
+                }
             }
         });
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // do something
+                setDateShown(-1);
+                titleTextView.setText(generateDateString());
+                LinkedList<String[]> list = DataParser.dateEntries(generateDateString());
+                textViews.clear();
+                contactListLinearLayout.removeAllViews();
+                for (int i = 0; i < list.size(); i++) {
+                    textViews.add(new TextView(getApplicationContext()));
+                    textViews.get(i).setText(DataParser.getName(list.get(i)));
+                    contactListLinearLayout.addView(textViews.get(i));
+                }
             }
         });
     } // createFunctionality
 
-    private void addPerson() {
-        // ENTER CODE HERE TO ADD A PERSON
-        /*
-        System.out.println(textViews.add(new TextView(getApplicationContext())));
-        textViews.getLast().setText(getIntent().getExtras().getString("edu.uga.tmw65104.hackgsuprojectidea.NAME"));
-        for(int i = 0; i < textViews.size(); i++) {
-            contactListLinearLayout.addView(textViews.get(i));
-        } // for
-        */
-    }
-
-    private String generateDateString(int offset) {
+    private void setDateShown(int offset) {
         calendar.add(Calendar.DAY_OF_MONTH, offset);
         dateShown = calendar.getTime();
+    }
+
+    private String generateDateString() {
         return calendar.get(Calendar.YEAR) + ""
-                + calendar.get(Calendar.MONTH) + ""
+                + (calendar.get(Calendar.MONTH) + 1) + ""
                 + calendar.get(Calendar.DAY_OF_MONTH) + "";
     }
+
 }
