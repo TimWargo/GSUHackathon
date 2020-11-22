@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < list.size(); i++) {
             textViews.add(new TextView(getApplicationContext()));
             textViews.getLast().setText(DataParser.getName(list.get(i)));
-            contactListLinearLayout.addView(textViews.getLast());
+            contactListLinearLayout.addView(textViews.getLast(), 0);
         } // for
 
     } // setLayouts
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < list.size(); i++) {
                         textViews.add(new TextView(getApplicationContext()));
                         textViews.get(i).setText(DataParser.getName(list.get(i)));
-                        contactListLinearLayout.addView(textViews.get(i));
+                        contactListLinearLayout.addView(textViews.get(i), 0);
                     }
                     if (!prevBtn.isClickable()) {
                         prevBtn.setClickable(true);
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < list.size(); i++) {
                         textViews.add(new TextView(getApplicationContext()));
                         textViews.get(i).setText(DataParser.getName(list.get(i)));
-                        contactListLinearLayout.addView(textViews.get(i));
+                        contactListLinearLayout.addView(textViews.get(i), 0);
                     }
                     if (!nextBtn.isClickable()) {
                         nextBtn.setClickable(true);

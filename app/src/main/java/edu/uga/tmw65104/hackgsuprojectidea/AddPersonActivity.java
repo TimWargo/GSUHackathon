@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -40,11 +42,29 @@ public class AddPersonActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String name = nameText.getText().toString();
                 String phoneNum = phoneText.getText().toString();
-                DataParser.add(phoneNum, name, currentDate);
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME", name);
-                startActivity(i);
+                if (isValidInputs(name, phoneNum)) {
+                    DataParser.add(phoneNum, name, currentDate);
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    i.putExtra("edu.uga.tmw65104.hackgsuprojectidea.NAME", name);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Name or phone number is invalid.",
+                            Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+    }
+
+    private boolean isValidInputs(String name, String phoneNum) {
+        if (name.length() == 0 || (!PhoneNumberUtils.isGlobalPhoneNumber(phoneNum)
+                || !PhoneNumberUtils.isWellFormedSmsAddress(phoneNum))
+                || !(PhoneNumberUtils.stripSeparators(phoneNum).length() > 9
+                        && PhoneNumberUtils.stripSeparators(phoneNum).length() < 13)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
