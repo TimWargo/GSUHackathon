@@ -1,4 +1,6 @@
 package edu.uga.tmw65104.hackgsuprojectidea;
+import android.util.Log;
+
 import java.io.File;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -14,13 +16,16 @@ import java.util.stream.Collectors;
 public class DataParser {
 
     static LinkedList<String[]> entries;
+    static File f;
 
     //populates linkedlist entries with each entry which is of type String[4]
     public static void initialize () {
         if (entries == null) {
             entries = new LinkedList<String[]>();
             try {
-                Scanner reader = new Scanner(new File("Data.txt"));
+                f = new File("Data.txt");
+                f.setWritable(true);
+                Scanner reader = new Scanner(f);
                 while (reader.hasNextLine()) {
                     entries.add(reader.nextLine().split(":"));
                 }
@@ -92,15 +97,15 @@ public class DataParser {
     public static void update () {
         try {
             //clears the file
-            PrintWriter pwriter = new PrintWriter("Data.txt");
-            pwriter.print("");
+            PrintWriter pwriter = new PrintWriter(f);
             pwriter.close();
 
-            PrintStream writer = new PrintStream("Data.txt");
+            PrintStream writer = new PrintStream(f);
             for (String[] entry: entries) {
-                writer.println(entry[0] + ":" + entry[1] + ":" + entry[2] + ":" + entry[3]);
+                writer.println(entry[0] + ":" + entry[1] + ":" + entry[2]);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             //no code here because this will never happen
         }
 
