@@ -1,8 +1,10 @@
 package edu.uga.tmw65104.hackgsuprojectidea;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Guideline;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,13 +52,9 @@ public class EditPerson extends AppCompatActivity {
             TextView t = new TextView(getApplicationContext());
             t.setText(DataParser.getName(list.get(i)));
             t.setTextSize(25);
-            Space personSpace = new Space(getApplicationContext());
-            personSpace.setMinimumWidth(25);
             ImageButton deleteBtn = new ImageButton(getApplicationContext());
-            //deleteBtn.setImageResource(getResources().getIdentifier("ic_delete", "drawable", getPackageName()));
-
+            deleteBtn.setImageDrawable(getResources().getDrawable(R.drawable.trashcan));
             horizontalLayout.addView(t);
-            horizontalLayout.addView(personSpace);
             horizontalLayout.addView(deleteBtn);
             contactListLinearLayout.addView(horizontalLayout);
 

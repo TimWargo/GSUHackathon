@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#92D6AC6E"
-tools:context=".EditPerson">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#92D6AC6E"
+    tools:context=".EditPerson">
 
-<androidx.constraintlayout.widget.Guideline
-    android:id="@+id/guideline4"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintGuide_begin="0dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp" />
 
-<androidx.constraintlayout.widget.Guideline
-    android:id="@+id/guideline5"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintGuide_percent="0.1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
 
     <TextView
         android:id="@+id/titleTextView"
@@ -37,81 +37,82 @@ tools:context=".EditPerson">
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
-<ScrollView
-    android:id="@+id/contactListScrollView"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:background="#FAF4C4"
-    app:layout_constraintBottom_toTopOf="@+id/guideline12"
-    app:layout_constraintEnd_toStartOf="@+id/guideline7"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="@+id/guideline6"
-    app:layout_constraintTop_toTopOf="@+id/guideline10">
-
-    <LinearLayout
-        android:id="@+id/editPersonListLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+    <ScrollView
+        android:id="@+id/contactListScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FAF4C4"
+        app:layout_constraintBottom_toTopOf="@+id/guideline12"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/guideline10">
 
         <LinearLayout
-            android:id="@+id/person1Layout"
+            android:id="@+id/editPersonListLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/person1TextView"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/person1Layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Person 1"
-                android:textSize="24sp" />
+                android:orientation="horizontal">
 
-            <Space
-                android:id="@+id/person1Space"
-                android:layout_width="25dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/person1TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Person 1"
+                    android:textSize="24sp" />
 
-            <ImageButton
-                android:id="@+id/person1DeleteBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#00FFFFFF"
-                app:srcCompat="@android:drawable/ic_delete" />
+                <Space
+                    android:id="@+id/person1Space"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
+                <ImageButton
+                    android:id="@+id/person1DeleteBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#00FFFFFF"
+                    app:srcCompat="@android:drawable/ic_delete"
+                    tools:srcCompat="@android:drawable/ic_delete" />
+
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/buttonHorizontalLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/guideline12">
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#E920FF3E"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#B3B0B0"
+            android:text="Cancel" />
     </LinearLayout>
-</ScrollView>
-
-<LinearLayout
-    android:id="@+id/buttonHorizontalLayout"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:orientation="horizontal"
-    app:layout_constraintBottom_toTopOf="@+id/guideline13"
-    app:layout_constraintEnd_toStartOf="@+id/guideline7"
-    app:layout_constraintStart_toStartOf="@+id/guideline6"
-    app:layout_constraintTop_toTopOf="@+id/guideline12">
-
-    <Button
-        android:id="@+id/saveBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:backgroundTint="#E920FF3E"
-        android:text="Save" />
-
-    <Button
-        android:id="@+id/cancelBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:backgroundTint="#B3B0B0"
-        android:text="Cancel" />
-</LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -127,19 +128,19 @@ tools:context=".EditPerson">
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.8" />
 
-<androidx.constraintlayout.widget.Guideline
-    android:id="@+id/guideline10"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintGuide_percent=".18" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".18" />
 
-<androidx.constraintlayout.widget.Guideline
-    android:id="@+id/guideline12"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintGuide_percent="0.68" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.68" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
@@ -147,5 +148,12 @@ tools:context=".EditPerson">
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineDeleteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
