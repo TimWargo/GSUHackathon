@@ -1,4 +1,5 @@
 package edu.uga.tmw65104.hackgsuprojectidea;
+import android.content.Context;
 import android.util.Log;
 
 import java.io.File;
@@ -37,28 +38,32 @@ public class DataParser {
 
 
     public static void add (String number, String name, String date) {
-        for (String[] x: entries) {
-            if (x[2].compareTo(date) > 0) {
-
-            }
-
-        }
-        entries.add(new String[]{number, name, date});
-        update();
-    }
-
-    public static int findIndex (String number, String name, String date) {
+        int originalSize = entries.size();
         for (int i = 0; i < entries.size(); i++) {
-            if (number.equals(entries.get(i)[0]) && name.equals(entries.get(i)[1]) && date.equals(entries.get(i)[2])) {
-                return i;
+            if (date.compareTo(entries.get(i)[2]) <= 0) {
+                entries.add(i, new String[]{number, name, date});
+                break;
             }
         }
-        return -1;
+        if (originalSize == entries.size()) {
+            entries.add(new String[]{number, name, date});
+        }
+        update();
     }
 
     //LISTEN HERE, IF YOU TRY TO REMOVE AN ENTRY THAT DOESN'T EXIST IN THE TREE, THINGS WILL GO VERY WRONG.
     public static void remove (String number, String name, String date) {
-        entries.remove(findIndex(number, name, date));
+        int index = -1;
+        for (int i = 0; i < entries.size(); i++) {
+            if (number.equals(entries.get(i)[0]) && name.equals(entries.get(i)[1]) && date.equals(entries.get(i)[2])) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            throw new IllegalArgumentException("The person being removed does not exist.");
+        }
+        entries.remove(index);
         update();
     }
 
