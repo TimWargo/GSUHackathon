@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     LinkedList<TextView> textViews;
     Date dateShown;
     GregorianCalendar calendar;
+    GregorianCalendar currentDayCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         dateShown = java.util.Calendar.getInstance().getTime();
         calendar = new GregorianCalendar();
+        currentDayCalendar = new GregorianCalendar();
         // Creates the list of people to use for the program
         DataParser.initialize();
         textViews = new LinkedList<>();
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setLayouts() {
-        titleTextView.setText(generateDateString());
+        titleTextView.setText(generateTitleString());
         nextBtn.setText(">");
         prevBtn.setText("<");
         nextBtn.setClickable(false);
@@ -96,30 +98,38 @@ public class MainActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDateShown(1);
-                titleTextView.setText(generateDateString());
-                LinkedList<String[]> list = DataParser.dateEntries(generateDateString());
-                textViews.clear();
-                contactListLinearLayout.removeAllViews();
-                for (int i = 0; i < list.size(); i++) {
-                    textViews.add(new TextView(getApplicationContext()));
-                    textViews.get(i).setText(DataParser.getName(list.get(i)));
-                    contactListLinearLayout.addView(textViews.get(i));
+                if (isInBounds(1)) {
+                    setDateShown(1);
+                    titleTextView.setText(generateTitleString());
+                    LinkedList<String[]> list = DataParser.dateEntries(generateDateString());
+                    textViews.clear();
+                    contactListLinearLayout.removeAllViews();
+                    for (int i = 0; i < list.size(); i++) {
+                        textViews.add(new TextView(getApplicationContext()));
+                        textViews.get(i).setText(DataParser.getName(list.get(i)));
+                        contactListLinearLayout.addView(textViews.get(i));
+                    }
+                } else {
+                    nextBtn.setClickable(false);
                 }
             }
         });
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDateShown(-1);
-                titleTextView.setText(generateDateString());
-                LinkedList<String[]> list = DataParser.dateEntries(generateDateString());
-                textViews.clear();
-                contactListLinearLayout.removeAllViews();
-                for (int i = 0; i < list.size(); i++) {
-                    textViews.add(new TextView(getApplicationContext()));
-                    textViews.get(i).setText(DataParser.getName(list.get(i)));
-                    contactListLinearLayout.addView(textViews.get(i));
+                if (isInBounds(-1)) {
+                    setDateShown(-1);
+                    titleTextView.setText(generateTitleString());
+                    LinkedList<String[]> list = DataParser.dateEntries(generateDateString());
+                    textViews.clear();
+                    contactListLinearLayout.removeAllViews();
+                    for (int i = 0; i < list.size(); i++) {
+                        textViews.add(new TextView(getApplicationContext()));
+                        textViews.get(i).setText(DataParser.getName(list.get(i)));
+                        contactListLinearLayout.addView(textViews.get(i));
+                    }
+                } else {
+                    prevBtn.setClickable(false);
                 }
             }
         });
@@ -130,10 +140,48 @@ public class MainActivity extends AppCompatActivity {
         dateShown = calendar.getTime();
     }
 
-    private String generateDateString() {
-        return calendar.get(Calendar.YEAR) + ""
-                + (calendar.get(Calendar.MONTH) + 1) + ""
-                + calendar.get(Calendar.DAY_OF_MONTH) + "";
+    private String generateTitleString() {
+
+        String calendarMonth = calendar.get(Calendar.MONTH) + 1 + "";
+        String calendarDay = calendar.get(Calendar.DAY_OF_MONTH) + "";
+        String calendarYear = calendar.get(Calendar.YEAR) + "";
+
+        if (calendarDay.length() != 2) {
+            calendarDay = "0" + calendarDay;
+        } // if
+        if (calendarMonth.length() != 2) {
+            calendarMonth = "0" + calendarMonth;
+        }
+
+        return calendarMonth + "/"
+                + calendarDay + "/"
+                + calendarYear;
     }
 
+    private String generateDateString() {
+
+        String calendarMonth = calendar.get(Calendar.MONTH) + 1 + "";
+        String calendarDay = calendar.get(Calendar.DAY_OF_MONTH) + "";
+        String calendarYear = calendar.get(Calendar.YEAR) + "";
+
+        if (calendarDay.length() != 2) {
+            calendarDay = "0" + calendarDay;
+        } // if
+        if (calendarMonth.length() != 2) {
+            calendarMonth = "0" + calendarMonth;
+        }
+
+        return calendarYear + calendarMonth + calendarDay;
+    }
+
+    private boolean isInBounds(int offset) {
+        GregorianCalendar tempCalendar = new GregorianCalendar(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        tempCalendar.add(Calendar.DAY_OF_MONTH, offset);
+        if (tempCalendar.compareTo(currentDayCalendar) > 0 || tempCalendar.compareTo(currentDayCalendar) < -14) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
